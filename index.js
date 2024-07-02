@@ -1,6 +1,10 @@
 /** @type {import("eslint").Linter.Config}  */
 const defaultConfig = {
-  extends: ['plugin:@typescript-eslint/recommended', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier'
+  ],
   plugins: ['import', 'unicorn'],
   rules: {
     'no-restricted-syntax': [
@@ -17,7 +21,6 @@ const defaultConfig = {
     'prefer-destructuring': ['warn', { object: false, array: true }],
     'no-multiple-empty-lines': ['error', { max: 2 }],
     'object-shorthand': ['warn', 'always'],
-    'unicorn/prefer-ternary': 'warn',
     'import/newline-after-import': ['warn', { count: 1 }],
     'import/order': [
       'warn',
@@ -56,7 +59,27 @@ const defaultConfig = {
         assertionStyle: 'as',
         objectLiteralTypeAssertions: 'allow-as-parameter'
       }
-    ]
+    ],
+    '@typescript-eslint/prefer-nullish-coalescing': 'warn',
+    'unicorn/prefer-ternary': 'warn',
+    'unicorn/prefer-negative-index': 'warn',
+    'unicorn/prefer-at': 'warn',
+    'unicorn/prefer-switch': 'warn',
+    'unicorn/switch-case-braces': ['warn', 'avoid'],
+    'unicorn/consistent-destructuring': 'warn',
+    'unicorn/no-useless-undefined': 'warn',
+    'unicorn/expiring-todo-comments': 'warn',
+    'unicorn/require-array-join-separator': 'warn'
+  },
+  /*
+    Rule @typescript-eslint/prefer-nullish-coalescing - require parserOptions reason:
+    Error while loading rule '@typescript-eslint/prefer-nullish-coalescing':
+    You have used a rule which requires parserServices to be generated. 
+    You must therefore provide a value for the "parserOptions.project"
+  */
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    project: true
   }
 }
 
