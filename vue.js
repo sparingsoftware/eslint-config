@@ -4,11 +4,17 @@ const defaultConfig = require('./index')
 const vue = {
   extends: [
     'plugin:vue/vue3-recommended',
-    'eslint:recommended',
     '@sparing-software/eslint-config',
     '@vue/eslint-config-typescript/recommended'
   ],
+  /* 
+    This parser safe us from extra eslint problem after
+    adding @typescript-eslint/prefer-nullish-coalescing flag into index.js
+    https://stackoverflow.com/a/66598327 
+  */
+  parser: 'vue-eslint-parser',
   parserOptions: {
+    ...defaultConfig.extends,
     ecmaVersion: 'latest'
   },
   rules: {
